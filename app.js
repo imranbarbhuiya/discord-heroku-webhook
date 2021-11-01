@@ -16,13 +16,26 @@ app.post("/webhook", async (req, res) => {
 
   const options = {
     method: "POST",
-    url: "https://discord.com/api/webhooks/904706503099957288/C5kFmuQD0iDLQqabE20IkGvduUeUGHI9Iq8YXNrs_wacpAuxmDnX8qjOBKCTSe94tUyb",
+    url: process.env.URL,
     headers: {
       "Content-type": "application/json",
     },
     //Format JSON DATA
     body: JSON.stringify({
-      content: `This is A Webhook notification!A build for your app ${Payload.data.app.name} was just triggered`,
+      username: "Heroku Build",
+      embeds: [
+        {
+          author: {
+            name: `${Payload.data.user.email}`,
+            icon_url:
+              "https://cdn.discordapp.com/avatars/758880890159235083/d1967a6f5040ad22cfaaf3e13ab5c3f1.png?size=4096",
+          },
+          title: "Codversity Build Report",
+          url: "https://codversity.herokuapp.com/",
+          color: `${Payload.data.status == "success" ? "GREEN" : "RED"}`,
+          description: `App Name: ${Payload.data.app.name}`,
+        },
+      ],
     }),
   };
   request(options, function (error, response) {
