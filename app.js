@@ -16,7 +16,7 @@ app.post("/webhook", async (req, res) => {
 
   const options = {
     method: "POST",
-    url: process.env.URL,
+    url: `${process.env.URL}`,
     headers: {
       "Content-type": "application/json",
     },
@@ -38,9 +38,8 @@ app.post("/webhook", async (req, res) => {
       ],
     }),
   };
-  request(options, function (error, response) {
-    if (error) throw new Error(error);
-    console.log(response);
+  request(options, function (error) {
+    if (error) console.log(error);
   });
 });
 app.listen(process.env.PORT || 3000, () => console.log("App started"));
