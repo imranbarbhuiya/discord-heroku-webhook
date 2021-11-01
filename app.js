@@ -32,7 +32,7 @@ app.post("/webhook", async (req, res) => {
           },
           title: "Codversity Build Report",
           url: "https://codversity.herokuapp.com/",
-          color: `${Payload.data.status == "success" ? "GREEN" : "RED"}`,
+          color: `${Payload.data.status == "succeeded" ? "GREEN" : "RED"}`,
           description: `App Name: ${Payload.data.app.name}`,
         },
       ],
