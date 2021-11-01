@@ -38,8 +38,9 @@ app.post("/webhook", async (req, res) => {
       ],
     }),
   };
-  request(options, function (error) {
+  request(options, function (error, response) {
     if (error) console.log(error);
+    console.log(response);
   });
 });
 app.listen(process.env.PORT || 3000, () => console.log("App started"));
