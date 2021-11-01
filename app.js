@@ -5,6 +5,10 @@ const request = require("request");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", function (_, res) {
+  res.send("Hello World");
+});
+
 app.post("/webhook", async (req, res) => {
   const Payload = req.body;
   //Respond To Heroku Webhook
